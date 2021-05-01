@@ -1,0 +1,6 @@
+{
+  "usersData": [
+    {"email": "stas@mail.ru", "password": "1234"},
+    {"email": "steve.jobs@example.com", "password": "password"}
+  ]
+}
