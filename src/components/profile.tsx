@@ -11,7 +11,7 @@ const Greetings = styled.p`
 
 const Button = styled.button`
   cursor: pointer;
-  background: #F5F5F5;
+  background: #f5f5f5;
   border: none;
   border-radius: 8px;
   width: 200px;

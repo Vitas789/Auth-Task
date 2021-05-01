@@ -8,13 +8,13 @@ const Name = styled.h1`
   font-size: 64px;
   line-height: 78px;
   margin-bottom: 250px;
-` 
+`;
 
 function Header(props: any) {
   return (
-  <div>
-    <Name>ONLY.</Name>
-  </div>
+    <div>
+      <Name>ONLY.</Name>
+    </div>
   );
 }
 
