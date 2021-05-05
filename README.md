@@ -1,2 +1,2 @@
-# Auth
+# Запуск проекта: npm run serve
  

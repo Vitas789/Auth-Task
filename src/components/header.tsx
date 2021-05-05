@@ -7,10 +7,9 @@ const Name = styled.h1`
   font-weight: medium;
   font-size: 64px;
   line-height: 78px;
-  margin-bottom: 250px;
 `;
 
-function Header(props: any) {
+const Header: React.FC = () => {
   return (
     <div>
       <Name>ONLY.</Name>

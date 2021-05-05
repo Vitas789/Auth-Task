@@ -1,5 +1,8 @@
 import Header from './header';
 import styled from 'styled-components';
+import React from 'react';
+import { useCookies } from 'react-cookie';
+import { RouteComponentProps } from 'react-router';
 
 const Greetings = styled.p`
   font-family: 'Helvetica Neue', sans-serif;
@@ -7,6 +10,7 @@ const Greetings = styled.p`
   font-weight: normal;
   font-size: 40px;
   line-height: 48px;
+  margin-top: 342px;
 `;
 
 const Button = styled.button`
@@ -24,18 +28,27 @@ const Button = styled.button`
   line-height: 22px;
 `;
 
-function Profile(props: any) {
-  const { history, user } = props;
-  const click = () => history.push('/login');
-  return (
-    <div>
-      <Header></Header>
-      <Greetings>
-        Здравствуйте, <b>{user}</b>
-      </Greetings>
-      <Button onClick={click}>Выйти</Button>
-    </div>
-  );
-}
+const Profile: React.FC<RouteComponentProps> = ({ history }) => {
+  const [cookies] = useCookies(['user']);
+  const redirect = (url: string) => history.push(`/${url}`);
+
+  const checkUser = (user: string) => {
+    if (user) {
+      return (
+        <div>
+          <Header></Header>
+          <Greetings>
+            Здравствуйте, <b>{cookies.user}</b>
+          </Greetings>
+          <Button onClick={() => redirect('login')}>Выйти</Button>
+        </div>
+      );
+    } else {
+      redirect('login');
+    }
+  };
+
+  return <div>{checkUser(cookies.user)}</div>;
+};
 
 export default Profile;
