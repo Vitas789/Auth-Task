@@ -1,4 +1,3 @@
-import Header from './header';
 import styled from 'styled-components';
 import React from 'react';
 import { useCookies } from 'react-cookie';
@@ -36,7 +35,6 @@ const Profile: React.FC<RouteComponentProps> = ({ history }) => {
     if (user) {
       return (
         <div>
-          <Header></Header>
           <Greetings>
             Здравствуйте, <b>{cookies.user}</b>
           </Greetings>
