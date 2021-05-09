@@ -76,20 +76,27 @@ const Err = styled.span`
   margin-bottom: 20px;
 `;
 
-const Button = styled.button`
+const Buttons = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+`;
+
+const Button = styled.button<{ buttonColor: string; textColor: string }>`
+  width: 100%;
   cursor: pointer;
-  background: #4a67ff;
+  background: ${(props) => props.buttonColor || 'white'};
   border: none;
   border-radius: 8px;
   height: 60px;
   font-family: 'Helvetica Neue', sans-serif;
   font-style: normal;
-  color: white;
+  color: ${(props) => props.textColor || 'black'};
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
   &:disabled {
-    background: #99a9ff;
+    background: ${(props) => props.buttonColor === '#4a67ff' ? '#99a9ff' : '#707070'};
   }
 `;
 
@@ -172,6 +179,21 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
     }
   };
 
+  const regist: SubmitHandler<FormData> = async (data: FormData) => {
+    console.log(data);
+    try {
+      setButton({ disabled: true });
+      await axios
+        .post('http://localhost:4200/usersData', {
+          email: data.email,
+          password: data.password,
+        })
+        .then(() => setButton({ disabled: false }))
+    } catch (err) {
+      console.log(`Ошибка ${err.name}: ${err.message}`);
+    }
+  };
+
   return (
     <div>
       <Form onSubmit={handleSubmit(submit)}>
@@ -194,9 +216,24 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
           <input type="checkbox" />
           <CheckText>Запомнить пароль</CheckText>
         </Check>
-        <Button disabled={button.disabled} type="submit">
-          Войти
-        </Button>
+        <Buttons>
+          <Button
+            buttonColor="#242424"
+            textColor="white"
+            disabled={button.disabled}
+            type="submit"
+          >
+            Войти
+          </Button>
+          <Button
+            buttonColor="#4a67ff"
+            textColor="white"
+            disabled={button.disabled}
+            onClick={handleSubmit(regist)}
+          >
+            Регистрация
+          </Button>
+        </Buttons>
       </Form>
     </div>
   );
