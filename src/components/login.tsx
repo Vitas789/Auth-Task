@@ -96,7 +96,8 @@ const Button = styled.button<{ buttonColor: string; textColor: string }>`
   font-size: 18px;
   line-height: 22px;
   &:disabled {
-    background: ${(props) => props.buttonColor === '#4a67ff' ? '#99a9ff' : '#707070'};
+    background: ${(props) =>
+      props.buttonColor === '#4a67ff' ? '#99a9ff' : '#707070'};
   }
 `;
 
@@ -188,7 +189,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
           email: data.email,
           password: data.password,
         })
-        .then(() => setButton({ disabled: false }))
+        .then(() => setButton({ disabled: false }));
     } catch (err) {
       console.log(`Ошибка ${err.name}: ${err.message}`);
     }
