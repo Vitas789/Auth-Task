@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { useCookies } from 'react-cookie';
-import Header from './header';
 import { RouteComponentProps } from 'react-router';
 
 const Input = styled.input`
@@ -175,7 +174,6 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
 
   return (
     <div>
-      <Header></Header>
       <Form onSubmit={handleSubmit(submit)}>
         {state.map((item, index) => (
           <FormError key={index} style={{ display: item.display }}>
